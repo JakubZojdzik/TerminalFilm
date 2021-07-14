@@ -30,6 +30,16 @@ int main()
 {
 	const int spaceWidth = 32; 	//pixels
 	const int spaceHeight = 64; //pixels
+	string pixel = "█";
+	string clear = "\033[2J";
 	string code = "";
-	cout << rgbToAnsiChar(255, 255, 255) << " - ALA MA KOTA - "  << rgbToAnsiChar(255, 0, 0) << " - ALA MA KOTA - "  << rgbToAnsiChar(0, 255, 0) << " - ALA MA KOTA" << endl;
+	system("clear");
+	for(int i = 0; i < 41; i++)
+	{
+		for(int j = 0; j < 165; j++)
+		{
+			cout << rgbToAnsiChar(0, 0, 0) << pixel;
+		}
+		cout << '\n';
+	}
 }
