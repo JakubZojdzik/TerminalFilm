@@ -5,7 +5,7 @@ using namespace std;
 string pixel = "█", color, s, r, g, b;
 fstream pix;
 bool stop_frame;
-int k = 0, width = 234, height = 130; //165x82, hight resolution (not recomendet - 234x130)
+int k = 0, width = 165, height = 82; //165x82, hight resolution (not recomendet) - 234x130
 
 string rgbToAnsiBg(int r, int g, int b)
 {
@@ -30,13 +30,14 @@ string rgbToAnsiChar(int r, int g, int b){
 	return "\u001b[38;5;" + to_string(r+g+b+16) + "m";
 }
 
-void play()
+int main()
 {
 	pix.open("pixels.txt");
 	stop_frame = false;
+	system("clear");
+	ios_base::sync_with_stdio(false);
 	while(true)
 	{
-		system("clear");
 		s = "";
 		for(int i = 0; i < int(height/2); i++)
 		{
@@ -78,23 +79,20 @@ void play()
 		}
 		if(!stop_frame)
 		{
+			system("clear");
 			cout << s;
 			pix.clear();
 			pix.seekg(0, pix.beg);
-			usleep(600000);
+			usleep(50000);
 		}
 		else 
 		{
 			stop_frame = false;
 			pix.clear();
 			pix.seekg(0, pix.beg);
-			usleep(50000);
 		}
 		
 	}
 }
 
-int main()
-{
-	play();
-}
+//ctr+z ending
