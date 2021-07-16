@@ -7,11 +7,6 @@ fstream pix;
 bool stop_frame;
 int k = 0, width = 165, height = 82; //165x82, hight resolution (not recomendet) - 234x130
 
-string rgbToAnsiBg(int r, int g, int b)
-{
-	return ("\u001b[48;2;" + to_string(r) + ";" + to_string(g) + ";" + to_string(b) + "m");
-}
-
 string rgbToAnsiChar(int r, int g, int b){
 	if(r < 75)
 		r = 0;
