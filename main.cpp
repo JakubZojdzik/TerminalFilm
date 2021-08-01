@@ -5,7 +5,8 @@ using namespace std;
 string pixel = "█", color, s, r, g, b;
 fstream pix;
 bool stop_frame;
-int k = 0, width = 165, height = 82; //165x82, hight resolution (not recomendet) - 234x130
+int k = 0;
+int width = 165, height = 82; //165x82, hight resolution (not recomendet) - 234x130
 
 string rgbToAnsiChar(int r, int g, int b){
 	if(r < 75)
