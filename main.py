@@ -1,29 +1,32 @@
-import numpy as np
 import cv2
 import time
 
+def colored(r, g, b, text):
+    return "\033[38;2;{};{};{}m{}\033[38;2;255;255;255m".format(r, g, b, text)
+
 video_name = "input.mp4"
 cap = cv2.VideoCapture(video_name)
-f = open("pixels.txt", 'w') 
-width = 165 #165x82, hight resolution (not recomendet) - 234x130
+width = 165 # small - 165x82, or high resolution - 234x130
 height = 82
-s = ""
+fps = 35 
+speed = 2 # with small resolution - 2/3, with high resolution - 3/4 is recomended
+pxl = "█"
+print("\033c", end="")
 for k in range(1000):
-    ret, frame = cap.read()
-    ret, frame = cap.read()
+    for _ in range(speed):
+        ret, frame = cap.read()
     if ret:
+        print("\033[%d;%dH" % (0, 0), end='')
         frame = cv2.resize(frame, (width, height), interpolation =cv2.INTER_AREA)
         s = ""
         for i in range(int(height/2)):
             for j in range(width):
                 b, g, r = frame[i*2, j]
-                s += str(r) + ';' + str(g) + ';' + str(b) + '; '
-            s += '\n'
+                print(colored(r, g, b, pxl), end='')
+            print()
+        time.sleep(1/fps)
 
-        f.seek(0)
-        f.truncate(0)
-        f.write(s)
-        time.sleep(0.04)
-
-f.close()
 cap.release()
+
+
+
