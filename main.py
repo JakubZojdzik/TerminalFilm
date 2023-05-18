@@ -1,12 +1,14 @@
 import cv2
 import time
 import os
+import sys
 
 def colored(r, g, b, text):
     return "\033[38;2;{};{};{}m{}\033[38;2;255;255;255m".format(r, g, b, text)
 
-video_name = "input.mp4"
-cap = cv2.VideoCapture(video_name)
+path = sys.argv[1]
+
+cap = cv2.VideoCapture(path)
 width = 131 # S - 132x65, M - 165x82, L - 234x130
 height = 64
 fps = 35
@@ -20,8 +22,8 @@ for k in range(1000):
         #os.system("clear")
         #print(chr(27)+'[2j')
         #print('\033c')
-        print('\x1bc')
         #print("\033[%d;%dH" % (0, 0), end='')
+        print('\x1bc')
         frame = cv2.resize(frame, (width, height), interpolation =cv2.INTER_AREA)
         s = ""
         for i in range(int(height/2)):
@@ -32,6 +34,3 @@ for k in range(1000):
         time.sleep(1/fps)
 
 cap.release()
-
-
-
