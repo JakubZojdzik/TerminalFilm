@@ -15,7 +15,7 @@ fps = 35
 speed = 2 # with small resolution - 2/3, with high resolution - 3/4 is recomended
 pxl = "█"
 print("\033c", end="")
-for k in range(1000):
+while(1):
     for _ in range(speed):
         ret, frame = cap.read()
     if ret:
