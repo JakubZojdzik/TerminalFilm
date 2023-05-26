@@ -6,6 +6,9 @@ import sys
 def colored(r, g, b, text):
     return "\033[38;2;{};{};{}m{}\033[38;2;255;255;255m".format(r, g, b, text)
 
+def move (y, x):
+    print("\033[%d;%dH" % (y, x))
+
 path = sys.argv[1]
 
 cap = cv2.VideoCapture(path)
@@ -23,7 +26,9 @@ while(1):
         #print(chr(27)+'[2j')
         #print('\033c')
         #print("\033[%d;%dH" % (0, 0), end='')
-        print('\x1bc')
+        
+        # print('\x1bc')
+        move(0, 0)
         frame = cv2.resize(frame, (width, height), interpolation =cv2.INTER_AREA)
         s = ""
         for i in range(int(height/2)):
